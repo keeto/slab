@@ -1,0 +1,11 @@
+{slab personList}
+	<ul>
+	{each person in people}
+		{include person}
+	{end}
+	</ul>
+{endslab}
+
+{slab person}
+	<li>{person.name} {person.age}</li>
+{endslab}

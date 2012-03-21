@@ -1,0 +1,6 @@
+#!/bin/sh
+if [[ -z $SLABHOME ]]; then
+	echo "slab: \$SLABHOME not set."
+	exit 1
+fi
+java -jar "$SLABHOME/thirdparty/js.jar" -f "$SLABHOME/src/slab.js" -f "$SLABHOME/thirdparty/beautify.js" "$SLABHOME/src/rhino.bootstrap.js" "$@"
