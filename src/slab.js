@@ -13,6 +13,9 @@ var exps = {
 	// grouping
 	group: (/\{slab\s+([$A-Za-z_][$0-9A-Za-z_]*)\}([^]*?)\{endslab\}/g),
 
+	// comments
+	comment: (/\{\*[^]*?\*\}/g),
+
 	// parser escape
 	kept: (/\{keep\}([^]*?)\{endslab\}/g),
 	keptIdent: (/(%#%)E[0-9]+\1/g),
@@ -270,7 +273,7 @@ function parse(str, slab){
 	str = str.replace(new RegExp('\\\\', 'g'), '\\\\').replace(/"/g, '\\"');
 	slab = slab || new SlabTemplate();
 
-	var slabs = str.match(exps.group);
+	var slabs = str.replace(exps.comment, '').match(exps.group);
 	if (!slabs) throw new SlabError('No valid templates found in string.');
 	
 	var len = slabs.length,

@@ -46,21 +46,28 @@ You can have multiple `slab` declarations in a single template:
 		Hi Universe!
 	{endslab}
 
+You can comment your templates using a multiline comment syntax:
+
+	{slab example}
+		{* This is a comment *}
+		{'This will be printed out!'}
+	{endslab}
+
 You can output the value of any expression just by writing the expression inside curly braces:
 
 	{slab example}
-		// Literals
+		{* Literals *}
 		{'Strings in single quotes, not double!'}
 		{100}
 		{true}
 
-		// Simple variable evaluation
+		{* Simple variable evaluation *}
 		{firstName}
 
-		// Function calls
+		{* Function calls *}
 		{makeUpperCase(firstName)}
 
-		// Expressions
+		{* Expressions *}
 		{firstName + '' + lastName}
 	{endslab}
 
@@ -85,19 +92,19 @@ Slab understands both the regular JavaScript operators as well as "word-operator
 These operators can be used in Slab's branching statements:
 
 	{slab example}
-		// If statement
+		{* If statement *}
 		{if firstName is 'Slab'}
 			Hello {firstName}
 		{end}
 
-		// If-Else statement
+		{* If-Else statement *}
 		{if firstName is 'Slab' and lastName isnt 'Slabgle'}
 			Hello {firstName}
 		{else}
 			Hello Stranger!
 		{end}
 
-		// If-Else-If statement
+		{* If-Else-If statement *}
 		{if firstName eq 'Slab' or firstName neq 'SLAB'}
 			Hello {firstName}
 		{else if firstName isnt 'Slabble' and firstName isnt 'Slabby'}
@@ -108,12 +115,12 @@ These operators can be used in Slab's branching statements:
 For arrays, you can iterate through items using an `each` statment:
 
 	{slab example}
-		// Array Iteration
+		{* Array Iteration *}
 		{each collection in collections}
 			{collection}
 		{end}
 
-		// Array Iteration with Index
+		{* Array Iteration with Index *}
 		{each index,collection in collections}
 			{index}: {collection}
 		{end}
@@ -122,12 +129,12 @@ For arrays, you can iterate through items using an `each` statment:
 Objects can be iterated using the `for` statement:
 
 	{slab example}
-		// Object Iteration
+		{* Object Iteration *}
 		{for person in people}
 			{person.name}
 		{end}
 
-		// Object iteration with Key
+		{* Object Iteration with Key *}
 		{for id,person in people}
 			{id}: {person.name}
 		{end}
