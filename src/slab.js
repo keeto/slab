@@ -300,7 +300,7 @@ function parse(str, slab){
 
 function wrapTemplate(str, id){
 	return 'var _buffer_ = "", _strs = {}, _strtmp;' + str
-		+ '\nreturn _buffer_;\n// @sourceURL=' + id;
+		+ '\nreturn _buffer_;\n//@ sourceURL=' + id;
 }
 
 function compile(str, slab){
