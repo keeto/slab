@@ -25,5 +25,8 @@
             "type": "MIT",
             "url": "https://raw.github.com/keeto/slab/master/LICENSE"
         }
-    ]
+    ],
+    "engines": {
+        "node": "*"
+    }
 }
