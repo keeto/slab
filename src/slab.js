@@ -17,7 +17,7 @@ var exps = {
 	comment: (/\{\*[^]*?\*\}/g),
 
 	// parser escape
-	kept: (/\{keep\}([^]*?)\{endslab\}/g),
+	kept: (/\{keep\}([^]*?)\{endkeep\}/g),
 	keptIdent: (/(%#%)E[0-9]+\1/g),
 
 	// new lines
