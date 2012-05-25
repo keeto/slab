@@ -246,20 +246,18 @@ function resolveIncludes(template, templates){
 	return template;
 }
 
+var stash = {},
+	stashCount = 0;
+
 function parseSub(str, slab){
 	var cache = slab._cache;
 	if (cache[str]) return cache[str];
 
-	var stack = [],
-		kept = {},
-		stashCount = 0;
+	var stack = [];
 
-	var  _str = str.replace(exps.kept, function(id, match){
-			kept[(id = '%#%E' + (stashCount++) + '%#%')] = match;
-			return id;
-		}).replace(exps.statement, partial(parseStatement, stack))
+	var _str = str.replace(exps.statement, partial(parseStatement, stack))
 		.replace(exps.keptIdent, function(match){
-			return kept[match];
+			return stash[match];
 		});
 
 	return (cache[str] = clean('%#=#%_buffer_ += "' + _str + '";'));
@@ -273,9 +271,12 @@ function parse(str, slab){
 	str = str.replace(new RegExp('\\\\', 'g'), '\\\\').replace(/"/g, '\\"');
 	slab = slab || new SlabTemplate();
 
-	var slabs = str.replace(exps.comment, '').match(exps.group);
+	var slabs = str.replace(exps.comment, '').replace(exps.kept, function(id, match){
+			stash[(id = '%#%E' + (stashCount++) + '%#%')] = match;
+			return id;
+		}).match(exps.group);
 	if (!slabs) throw new SlabError('No valid templates found in string.');
-	
+
 	var len = slabs.length,
 		templates = slab._templates,
 		parsed = slab._parsed,
