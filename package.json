@@ -1,0 +1,32 @@
+{
+    "name": "slab",
+    "description": "Slab is a templating engine for JavaScript with a simple syntax and an even simpler API",
+    "keywords": [
+        "template",
+        "engine",
+        "template engine",
+        "parser"
+    ],
+    "author": "Mark Obcena <@keeto>",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/keeto/slab"
+    },
+    "bugs": {
+        "url": "https://github.com/keeto/slab/issues"
+    },
+    "bin": {
+        "slab": "./bin/slab"
+    },
+    "main": "./src/slab.js",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://raw.github.com/keeto/slab/master/LICENSE"
+        }
+    ],
+    "engines": {
+        "node": "*"
+    }
+}
