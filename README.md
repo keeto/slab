@@ -149,7 +149,7 @@ Slab's `for` statement uses a `hasOwnProperty` guard internally to filter out in
 	{endslab}
 
 Because Slab's parser looks for statements inside a single pair of curly braces, you might run into some issues with stuff you don't want to get parsed. The special `keep` statement can be used to escape parts of your template that you don't want to be included in parsing, such as inline scripts and styles:
-	
+
 	{slab example}
 		{keep}
 			<style>
@@ -225,15 +225,29 @@ While it's alright to use `slab.compile` during development, it's advised that y
 
 ## The `slab` CLI Compiler
 
-You can also used the command-line `slab` utility to generate template files. Put the slab repository somewhere in your machine, add these lines to your shell's RC files:
+You can also used the command-line `slab` utility to generate template files. You can use the compiler using node or the standalone rhino version.
+
+### Node
+
+Install Slab via npm:
+
+	$ npm install slab
+
+You can then use the `slab` utility to compile your templates:
+
+	$ slab myTemplates.slab > myTemplates.js
+
+### Standalone Rhino
+
+Put the slab repository somewhere in your machine, add these lines to your shell's RC files:
 
 	# Change /path/to/slab!
 	export SLABHOME=/path/to/slab
 	export PATH=$SLABHOME/bin:$PATH
 
-After that you'll be able to run the `slab` utility. Simply pass it a set of files and it'll output the generated templates:
+After that you'll be able to run the `slab-rhino` utility. Simply pass it a set of files and it'll output the generated templates:
 
-	$ slab myTemplates.slab > myTemplates.js
+	$ slab-rhino myTemplates.slab > myTemplates.js
 
 
 ## Credits
