@@ -27,25 +27,25 @@ function generate(filename, str) {
 var args = process.argv.slice(2);
 var input = [];
 if (args.length) {
-  // We were passed filenames.
-  for (var i = 0, l = args.length; i < l; i++) {
-    try {
-      var file = fs.readFileSync(path.resolve(args[i])).toString();
-      input.push(file);
-    } catch (e) {
-      console.warn('Warning: Cannot read file ' + args[i]);
-    }
-  }
+	// We were passed filenames.
+	for (var i = 0, l = args.length; i < l; i++) {
+		try {
+			var file = fs.readFileSync(path.resolve(args[i])).toString();
+			input.push(file);
+		} catch (e) {
+			console.warn('Warning: Cannot read file ' + args[i]);
+		}
+	}
 
-  var parts = (args[0]).split(/\.|\/|\\/);
-  parts.pop();
+	var parts = (args[0]).split(/\.|\/|\\/);
+	parts.pop();
 	return generate(parts.pop(), input.join('\n'));
 } else {
-  // Listen from stdin.
-  process.stdin.on('data', function(chunk) {
-    input.push(chunk.toString());
-  });
-  process.stdin.on('end', function() {
-    generate('template', input.join('\n'));
-  });
+	// Listen from stdin.
+	process.stdin.on('data', function(chunk) {
+		input.push(chunk.toString());
+	});
+	process.stdin.on('end', function() {
+		generate('template', input.join('\n'));
+	});
 }
